@@ -1,6 +1,11 @@
 
-   export default function WeeklyMealPlan() {
-  const days = [
+ type WeeklyMealPlanProps = {
+  meals: Record<string, string>;
+};
+
+export default function WeeklyMealPlan({ meals }: WeeklyMealPlanProps) {
+   
+const days = [
     "Monday",
     "Tuesday",
     "Wednesday",
@@ -31,8 +36,10 @@
               <td className="px-4 py-4 font-medium text-zinc-800">
                 {day}
               </td>
-              <td className="px-4 py-4 text-zinc-600">-</td>
-              <td className="px-4 py-4 text-zinc-600">-</td>
+           <td className="px-4 py-4 text-zinc-600">
+  {meals[day] || "-"}
+</td>
+              
             </tr>
           ))}
         </tbody>
