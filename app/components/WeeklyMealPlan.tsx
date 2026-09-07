@@ -1,11 +1,23 @@
-
- type WeeklyMealPlanProps = {
+type WeeklyMealPlanProps = {
   meals: Record<string, string>;
+  onEditMeal: (day: string) => void;
+  editingDay: string | null;
+  editedMeal: string;
+  onEditedMealChange: (meal: string) => void;
+  onSaveMeal: () => void;
 };
 
-export default function WeeklyMealPlan({ meals }: WeeklyMealPlanProps) {
-   
-const days = [
+export default function WeeklyMealPlan({
+  meals,
+  onEditMeal,
+  editingDay,
+  editedMeal,
+  onEditedMealChange,
+   onSaveMeal,
+}: WeeklyMealPlanProps) {
+  
+  
+  const days = [
     "Monday",
     "Tuesday",
     "Wednesday",
@@ -33,13 +45,46 @@ const days = [
         <tbody>
           {days.map((day) => (
             <tr key={day} className="border-b border-pink-100">
-              <td className="px-4 py-4 font-medium text-zinc-800">
-                {day}
+              <td className="px-4 py-4 font-medium text-zinc-800">{day}</td>
+              <td className="px-4 py-4 text-zinc-600">
+                {editingDay === day ? (
+                  <input
+                    type="text"
+                    value={editedMeal}
+                    onChange={(event) => onEditedMealChange(event.target.value)}
+                    className="rounded border px-2 py-1"
+                  />
+                ) : (
+                  meals[day] || "-"
+                )}
               </td>
-           <td className="px-4 py-4 text-zinc-600">
-  {meals[day] || "-"}
-</td>
-              
+
+              <td className="px-4 py-4">
+                {meals[day] && (
+
+                    editingDay === day ? (
+      <button type="button" onClick={onSaveMeal}
+
+       className="rounded-md bg-pink-500 px-3 py-1 text-sm font-semibold text-white hover:bg-pink-600"
+      
+      >
+        Save
+      </button>):(
+                  <div className="flex gap-3">
+                    <button
+                      type="button"
+                      onClick={() => onEditMeal(day)}
+                      aria-label={`Edit meal for ${day}`}
+                    >
+                      ✏️
+                    </button>
+
+                    <button type="button" aria-label={`Delete meal for ${day}`}>
+                        🗑
+                    </button>
+                  </div>
+               ) )}
+              </td>
             </tr>
           ))}
         </tbody>
@@ -47,5 +92,3 @@ const days = [
     </section>
   );
 }
-
-    
