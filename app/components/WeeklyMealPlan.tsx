@@ -1,3 +1,6 @@
+import { Pencil, Trash2 } from "lucide-react";
+
+
 type WeeklyMealPlanProps = {
   meals: Record<string, string>;
   onEditMeal: (day: string) => void;
@@ -5,6 +8,7 @@ type WeeklyMealPlanProps = {
   editedMeal: string;
   onEditedMealChange: (meal: string) => void;
   onSaveMeal: () => void;
+  onDeleteMeal: (day: string) => void;
 };
 
 export default function WeeklyMealPlan({
@@ -14,6 +18,7 @@ export default function WeeklyMealPlan({
   editedMeal,
   onEditedMealChange,
    onSaveMeal,
+   onDeleteMeal,
 }: WeeklyMealPlanProps) {
   
   
@@ -76,12 +81,18 @@ export default function WeeklyMealPlan({
                       onClick={() => onEditMeal(day)}
                       aria-label={`Edit meal for ${day}`}
                     >
-                      ✏️
+                      <Pencil size={18} />
                     </button>
 
-                    <button type="button" aria-label={`Delete meal for ${day}`}>
-                        🗑
-                    </button>
+
+
+                  <button
+    type="button"
+     onClick={() => onDeleteMeal(day)}
+    aria-label={`Delete meal for ${day}`}
+  >
+    <Trash2 size={18} />
+  </button>
                   </div>
                ) )}
               </td>
