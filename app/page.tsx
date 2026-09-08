@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import MealForm from "./components/MealForm";
 import Header from "./components/Header";
 import WeeklyMealPlan from "./components/WeeklyMealPlan";
@@ -9,8 +9,32 @@ import toast, { Toaster } from "react-hot-toast";
 
 export default function Home() {
   const [meals, setMeals] = useState<Record<string, string>>({});
-  const [editingDay, setEditingDay] = useState<string | null>(null);
+const [editingDay, setEditingDay] = useState<string | null>(null);
   const [editedMeal, setEditedMeal] = useState("");
+  const [hasLoaded, setHasLoaded] = useState(false);
+
+  useEffect(() => {
+  const savedMeals = localStorage.getItem("meals");
+
+  const timeout = setTimeout(() => {
+    if (savedMeals) {
+      setMeals(JSON.parse(savedMeals));
+    }
+
+    setHasLoaded(true);
+  }, 0);
+
+  return () => clearTimeout(timeout);
+}, []);
+
+
+useEffect(() => {
+  if (!hasLoaded) return;
+
+  localStorage.setItem("meals", JSON.stringify(meals));
+}, [meals, hasLoaded]);
+
+  
 
   const handleAddMeal = (day: string, meal: string) => {
     setMeals((previousMeals) => ({
