@@ -6,6 +6,7 @@ import Header from "./components/Header";
 import WeeklyMealPlan from "./components/WeeklyMealPlan";
 import Footer from "./components/Footer";
 import toast, { Toaster } from "react-hot-toast";
+import RecipeSearch from "./components/RecipeSearch";
 
 export default function Home() {
   const [meals, setMeals] = useState<Record<string, string>>({});
@@ -82,6 +83,8 @@ useEffect(() => {
       <Header />
         <Toaster />
       <MealForm onAddMeal={handleAddMeal} />
+      
+     
 
       <WeeklyMealPlan
         meals={meals}
@@ -92,6 +95,7 @@ useEffect(() => {
         onEditedMealChange={setEditedMeal}
         onSaveMeal={handleSaveMeal}
       />
+ <RecipeSearch />
 
       <Footer />
     </main>
