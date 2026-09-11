@@ -20,6 +20,11 @@ export default function RecipeSearch() {
   const [hasSearched, setHasSearched] = useState(false);
 
  const handleSearch = async () => {
+    if (!query.trim()) {
+  setError("Please enter a recipe");
+  setRecipes([]);
+  return;
+}
   setLoading(true);
   setError("");
   setHasSearched(true);
@@ -35,6 +40,7 @@ export default function RecipeSearch() {
   } catch {
     setError("Something went wrong");
   } finally {
+
     setLoading(false);
   }
 };
@@ -53,7 +59,18 @@ export default function RecipeSearch() {
      <input
   type="text"
   value={query}
-  onChange={(event) => setQuery(event.target.value)}
+
+  onChange={(event) => {
+  const value = event.target.value;
+
+  setQuery(value);
+
+  if (!value.trim()) {
+    setRecipes([]);
+    setError("");
+    setHasSearched(false);
+  }
+}}
   placeholder="Search for recipes..."
   aria-label="Search for recipes"
   className="flex-1 border border-gray-300 rounded-lg px-4 py-3 text-lg text-gray-900 placeholder:text-gray-500"
