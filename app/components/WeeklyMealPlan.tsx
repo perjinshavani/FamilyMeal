@@ -33,12 +33,18 @@ export default function WeeklyMealPlan({
   ];
 
   return (
-    <section className="bg-[#fff4e8] px-8 py-8">
+    <section className="bg-[#fff4e8] px-4 sm:px-8 py-8">
       <h2 className="mb-6 text-3xl font-bold text-pink-500">
         Weekly Meal Plan
       </h2>
 
-      <table className="w-full overflow-hidden rounded-xl bg-white shadow-sm">
+   <div className="overflow-x-auto">
+  <table className="w-full table-fixed rounded-xl bg-white shadow-sm">
+    
+  
+
+    
+        
         <thead className="bg-pink-100 text-pink-600">
           <tr>
             <th className="px-4 py-3 text-left">Day</th>
@@ -50,14 +56,15 @@ export default function WeeklyMealPlan({
         <tbody>
           {days.map((day) => (
             <tr key={day} className="border-b border-pink-100">
-              <td className="px-4 py-4 font-medium text-zinc-800">{day}</td>
-              <td className="px-4 py-4 text-zinc-600">
+           <td className="px-4 py-4 font-medium text-zinc-800">{day}</td>
+           <td className="px-4 py-4 text-zinc-600 break-words">
                 {editingDay === day ? (
                   <input
                     type="text"
                     value={editedMeal}
+                    maxLength={30}
                     onChange={(event) => onEditedMealChange(event.target.value)}
-                    className="rounded border px-2 py-1"
+                    className="w-full min-w-0 rounded border px-2 py-1"
                   />
                 ) : (
                   meals[day] || "-"
@@ -100,6 +107,8 @@ export default function WeeklyMealPlan({
           ))}
         </tbody>
       </table>
+      </div>
+    
     </section>
   );
 }
