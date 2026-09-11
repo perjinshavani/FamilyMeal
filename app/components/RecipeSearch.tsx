@@ -15,16 +15,29 @@ type Recipe = {
 export default function RecipeSearch() {
   const [query, setQuery] = useState("");
   const [recipes, setRecipes] = useState<Recipe[]>([]);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
+  const [hasSearched, setHasSearched] = useState(false);
 
-  const handleSearch = async () => {
+ const handleSearch = async () => {
+  setLoading(true);
+  setError("");
+  setHasSearched(true);
+
+  try {
     const response = await fetch(
-      `https://dummyjson.com/recipes/search?q=${query}`,
+      `https://dummyjson.com/recipes/search?q=${query}`
     );
 
     const data = await response.json();
 
     setRecipes(data.recipes);
-  };
+  } catch {
+    setError("Something went wrong");
+  } finally {
+    setLoading(false);
+  }
+};
 
   return (
     <section>
@@ -37,13 +50,14 @@ export default function RecipeSearch() {
 
   className="flex gap-3 mb-6"
 >
-        <input  className="flex-1 border border-gray-300 rounded-lg px-4 py-3 text-lg text-gray-900 placeholder:text-gray-500"
-          type="text"
-          value={query}
-          onChange={(event) => setQuery(event.target.value)}
-          placeholder="Search for recipes..."
-         
-        />
+     <input
+  type="text"
+  value={query}
+  onChange={(event) => setQuery(event.target.value)}
+  placeholder="Search for recipes..."
+  aria-label="Search for recipes"
+  className="flex-1 border border-gray-300 rounded-lg px-4 py-3 text-lg text-gray-900 placeholder:text-gray-500"
+/>
 
       <button
   type="submit"
@@ -52,6 +66,13 @@ export default function RecipeSearch() {
   Search
 </button>
       </form>
+
+      {loading && <p>Loading recipes...</p>}
+      {error && <p>{error}</p>}
+
+    {hasSearched && !loading && !error && recipes.length === 0 && (
+  <p>No recipes found</p>
+)}
 
       <div className="grid grid-cols-3 gap-6">
         {recipes.map((recipe) => (

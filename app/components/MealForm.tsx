@@ -43,6 +43,7 @@ export default function MealForm({ onAddMeal }: MealFormProps) {
       <input
         type="text"
         placeholder="Enter meal"
+        aria-label="Enter meal"
         value={meal}
         onChange={(event) => setMeal(event.target.value)}
       />
