@@ -54,7 +54,7 @@ export default function RecipeSearch() {
     handleSearch();
   }}
 
-  className="flex gap-3 mb-6"
+  className="flex flex-col sm:flex-row gap-3 mb-6"
 >
      <input
   type="text"
@@ -91,7 +91,7 @@ export default function RecipeSearch() {
   <p>No recipes found</p>
 )}
 
-      <div className="grid grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {recipes.map((recipe) => (
           <div
             key={recipe.id}

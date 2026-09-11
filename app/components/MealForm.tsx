@@ -25,7 +25,7 @@ export default function MealForm({ onAddMeal }: MealFormProps) {
   Add Meal
 </h2>
 
-<div className="flex items-center gap-4">
+<div  className="flex flex-col sm:flex-row sm:items-center gap-4">
 
       <select
         value={day}
@@ -45,6 +45,7 @@ export default function MealForm({ onAddMeal }: MealFormProps) {
         placeholder="Enter meal"
         aria-label="Enter meal"
         value={meal}
+        maxLength={30}
         onChange={(event) => setMeal(event.target.value)}
       />
 
