@@ -3,6 +3,7 @@
 "use client";
 
 import { useState } from "react";
+import toast from "react-hot-toast";
 
 type MealFormProps = {
   onAddMeal: (day: string, meal: string) => void;
@@ -12,12 +13,15 @@ export default function MealForm({ onAddMeal }: MealFormProps) {
   const [day, setDay] = useState("Monday");
   const [meal, setMeal] = useState("");
 
-  const handleSubmit = () => {
-    if (!meal.trim()) return;
+ const handleSubmit = () => {
+  if (!meal.trim()) {
+    toast.error("Please enter a meal");
+    return;
+  }
 
-    onAddMeal(day, meal);
-    setMeal("");
-  };
+  onAddMeal(day, meal);
+  setMeal("");
+};
 
   return (
     <section>

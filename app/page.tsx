@@ -10,32 +10,29 @@ import RecipeSearch from "./components/RecipeSearch";
 
 export default function Home() {
   const [meals, setMeals] = useState<Record<string, string>>({});
-const [editingDay, setEditingDay] = useState<string | null>(null);
+  const [editingDay, setEditingDay] = useState<string | null>(null);
   const [editedMeal, setEditedMeal] = useState("");
   const [hasLoaded, setHasLoaded] = useState(false);
 
   useEffect(() => {
-  const savedMeals = localStorage.getItem("meals");
+    const savedMeals = localStorage.getItem("meals");
 
-  const timeout = setTimeout(() => {
-    if (savedMeals) {
-      setMeals(JSON.parse(savedMeals));
-    }
+    const timeout = setTimeout(() => {
+      if (savedMeals) {
+        setMeals(JSON.parse(savedMeals));
+      }
 
-    setHasLoaded(true);
-  }, 0);
+      setHasLoaded(true);
+    }, 0);
 
-  return () => clearTimeout(timeout);
-}, []);
+    return () => clearTimeout(timeout);
+  }, []);
 
+  useEffect(() => {
+    if (!hasLoaded) return;
 
-useEffect(() => {
-  if (!hasLoaded) return;
-
-  localStorage.setItem("meals", JSON.stringify(meals));
-}, [meals, hasLoaded]);
-
-  
+    localStorage.setItem("meals", JSON.stringify(meals));
+  }, [meals, hasLoaded]);
 
   const handleAddMeal = (day: string, meal: string) => {
     setMeals((previousMeals) => ({
@@ -48,26 +45,23 @@ useEffect(() => {
     setEditingDay(day);
   };
 
-    const handleDeleteMeal = (day: string) => {
-      if (!confirm("Are you sure you want to delete this meal?")) return;
+  const handleDeleteMeal = (day: string) => {
+    if (!confirm("Are you sure you want to delete this meal?")) return;
 
-      setMeals((previousMeals) => {
-        const updatedMeals = { ...previousMeals };
-        delete updatedMeals[day];
+    setMeals((previousMeals) => {
+      const updatedMeals = { ...previousMeals };
+      delete updatedMeals[day];
 
-        return updatedMeals;
-      });
-      toast.success("Meal deleted");
-    };
+      return updatedMeals;
+    });
+    toast.success("Meal deleted");
+  }
 
   const handleSaveMeal = () => {
     if (!editingDay || !editedMeal.trim()) {
-  toast.error("Please enter a meal");
-  return;
-}
-  
-
-  
+      toast.error("Please enter a meal");
+      return;
+    }
 
     setMeals((previousMeals) => ({
       ...previousMeals,
@@ -81,10 +75,8 @@ useEffect(() => {
   return (
     <main>
       <Header />
-        <Toaster />
+      <Toaster />
       <MealForm onAddMeal={handleAddMeal} />
-      
-     
 
       <WeeklyMealPlan
         meals={meals}
@@ -95,7 +87,7 @@ useEffect(() => {
         onEditedMealChange={setEditedMeal}
         onSaveMeal={handleSaveMeal}
       />
- <RecipeSearch />
+      <RecipeSearch />
 
       <Footer />
     </main>
