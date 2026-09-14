@@ -19,5 +19,15 @@ The application is aimed at families and individuals who want a simple way to pl
 
 <img width="370" height="407" alt="image" src="https://github.com/user-attachments/assets/3e468902-1498-4091-9744-8edae97c7e5b" />
 <img width="326" height="397" alt="image" src="https://github.com/user-attachments/assets/79d3abea-1a66-4015-91fb-2a9269640eb7" />
+## Technologies
 
+- Next.js
+- React
+- TypeScript
+- Tailwind CSS
+- React Hot Toast
+- Lucide React
+- DummyJSON Recipes API
+- localStorage
+- Git and GitHub
 
