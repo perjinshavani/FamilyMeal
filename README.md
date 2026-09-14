@@ -16,7 +16,6 @@ The application is aimed at families and individuals who want a simple way to pl
 - Responsive design for different screen sizes
 <img width="724" height="453" alt="image" src="https://github.com/user-attachments/assets/2a922ca0-d9d7-427a-9bc7-5e701a67c73f" />
 <img width="933" height="434" alt="image" src="https://github.com/user-attachments/assets/ebcf0d24-eeab-4622-98b2-9ddc9127ecee" />
-## Responsive Design
 
 <img width="370" height="407" alt="image" src="https://github.com/user-attachments/assets/3e468902-1498-4091-9744-8edae97c7e5b" />
 <img width="326" height="397" alt="image" src="https://github.com/user-attachments/assets/79d3abea-1a66-4015-91fb-2a9269640eb7" />
