@@ -43,6 +43,7 @@ export default function Home() {
 
   const handleEditMeal = (day: string) => {
     setEditingDay(day);
+      setEditedMeal(meals[day]);
   };
 
   const handleDeleteMeal = (day: string) => {
