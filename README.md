@@ -14,3 +14,6 @@ The application is aimed at families and individuals who want a simple way to pl
 - Search for recipe inspiration using an external API
 - Loading, validation and error feedback
 - Responsive design for different screen sizes
+<img width="724" height="453" alt="image" src="https://github.com/user-attachments/assets/2a922ca0-d9d7-427a-9bc7-5e701a67c73f" />
+<img width="933" height="434" alt="image" src="https://github.com/user-attachments/assets/ebcf0d24-eeab-4622-98b2-9ddc9127ecee" />
+
