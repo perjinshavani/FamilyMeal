@@ -38,7 +38,7 @@ export default function WeeklyMealPlan({
         Weekly Meal Plan
       </h2>
 
-   <div className="overflow-x-auto">
+   <div  className="overflow-x-auto max-w-5xl">
   <table className="w-full table-fixed rounded-xl bg-white shadow-sm">
     
   
@@ -64,6 +64,11 @@ export default function WeeklyMealPlan({
                     value={editedMeal}
                     maxLength={30}
                     onChange={(event) => onEditedMealChange(event.target.value)}
+                    onKeyDown={(event) => {
+    if (event.key === "Enter") {
+      onSaveMeal();
+    }
+  }}
                     className="w-full min-w-0 rounded border px-2 py-1"
                   />
                 ) : (

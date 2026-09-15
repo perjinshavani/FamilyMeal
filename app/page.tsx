@@ -60,7 +60,9 @@ export default function Home() {
 
   const handleSaveMeal = () => {
     if (!editingDay || !editedMeal.trim()) {
-      toast.error("Please enter a meal");
+        toast.error("Please enter a meal", {
+    id: "edit-meal-error",
+  });
       return;
     }
 

@@ -15,7 +15,9 @@ export default function MealForm({ onAddMeal }: MealFormProps) {
 
  const handleSubmit = () => {
   if (!meal.trim()) {
-    toast.error("Please enter a meal");
+     toast.error("Please enter a meal", {
+    id: "meal-error",
+  });
     return;
   }
 
@@ -24,16 +26,23 @@ export default function MealForm({ onAddMeal }: MealFormProps) {
 };
 
   return (
-    <section>
+    <section className="px-4 sm:px-8 py-8">
 <h2 className="mb-5 text-2xl font-bold text-zinc-900">
   Add Meal
 </h2>
 
-<div  className="flex flex-col sm:flex-row sm:items-center gap-4">
+<form
+  onSubmit={(event) => {
+    event.preventDefault();
+    handleSubmit();
+  }}
+  className="flex flex-col sm:flex-row sm:items-center gap-4"
+>
 
-      <select
+      <select 
         value={day}
         onChange={(event) => setDay(event.target.value)}
+        className="rounded-lg border border-gray-300 px-4 py-3 text-lg"
       >
         <option>Monday</option>
         <option>Tuesday</option>
@@ -51,16 +60,16 @@ export default function MealForm({ onAddMeal }: MealFormProps) {
         value={meal}
         maxLength={30}
         onChange={(event) => setMeal(event.target.value)}
+        className="rounded-lg border border-gray-300 px-4 py-3 text-lg"
       />
 
-   <button
-  type="button"
-  onClick={handleSubmit}
+ <button
+  type="submit"
   className="rounded-lg bg-pink-500 px-4 py-2 font-semibold text-white transition hover:bg-pink-600 active:scale-95"
 >
   Add
 </button>
-</div>
+</form>
     </section>
     
   );

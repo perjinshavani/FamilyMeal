@@ -46,7 +46,7 @@ export default function RecipeSearch() {
 };
 
   return (
-    <section>
+    <section className="px-4 sm:px-8 py-8">
       <h2 className="text-3xl font-bold mb-4">Recipe Inspiration</h2>
 <form
   onSubmit={(event) => {
