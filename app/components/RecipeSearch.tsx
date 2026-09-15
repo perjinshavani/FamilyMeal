@@ -54,7 +54,7 @@ export default function RecipeSearch() {
     handleSearch();
   }}
 
-  className="flex flex-col sm:flex-row gap-3 mb-6"
+className="flex flex-col sm:flex-row gap-3 mb-6 max-w-xl"
 >
      <input
   type="text"
